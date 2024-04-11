@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Bash
+rm $HOME/.bash_profile
+rm $HOME/.bashrc
+ln -sf $DOTFILES/bash/.bash_profile $HOME/.bash_profile
+ln -sf $DOTFILES/bash/.bashrc $HOME/.bashrc
+source $HOME/.bashrc
+
+# Kitty
+rm -rf $HOME/.config/kitty
+ln -s $DOTFILES/kitty $HOME/.config/kitty
+
+# i3wm
+rm -rf $HOME/.config/i3
+ln -s $DOTFILES/i3 $HOME/.config

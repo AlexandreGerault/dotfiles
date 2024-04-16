@@ -3,8 +3,8 @@
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Bash
-rm $HOME/.bash_profile
-rm $HOME/.bashrc
+rm -rf $HOME/.bash_profile
+rm -rf $HOME/.bashrc
 ln -sf $DOTFILES/bash/.bash_profile $HOME/.bash_profile
 ln -sf $DOTFILES/bash/.bashrc $HOME/.bashrc
 source $HOME/.bashrc

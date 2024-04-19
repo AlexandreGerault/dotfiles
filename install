@@ -18,6 +18,10 @@ fi
 rm -rf "$HOME/.config/kitty"
 ln -s "$DOTFILES/kitty" "$HOME/.config/kitty"
 
+# Tmux
+rm -rf "$HOME/.tmux.conf"
+ln -sf "$DOTFILES/tmux/tmux.conf" "$HOME/.tmux.conf"
+
 # i3wm
 rm -rf "$HOME/.config/i3"
 ln -s "$DOTFILES/i3" "$HOME/.config"

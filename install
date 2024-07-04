@@ -20,7 +20,9 @@ ln -s "$DOTFILES/kitty" "$HOME/.config/kitty"
 
 # Tmux
 rm -rf "$HOME/.tmux.conf"
+rm -rf "$HOME/.tmux"
 ln -sf "$DOTFILES/tmux/tmux.conf" "$HOME/.tmux.conf"
+ln -sf "$DOTFILES/tmux" "$HOME/.tmux"
 
 # i3wm
 rm -rf "$HOME/.config/i3"

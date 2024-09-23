@@ -1,0 +1,7 @@
+[core]
+	editor = nvim
+[user]
+	name = Alexandre Gérault
+	email = gerault-alexandre@orange.fr
+[commit]
+	gpgSign = true

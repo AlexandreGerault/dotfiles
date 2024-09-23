@@ -24,6 +24,17 @@ rm -rf "$HOME/.tmux"
 ln -sf "$DOTFILES/tmux/tmux.conf" "$HOME/.tmux.conf"
 ln -sf "$DOTFILES/tmux" "$HOME/.tmux"
 
+if ! command -v git &> /dev/null
+then
+  echo >&2 "Git is not installed, cannot install tmux plugin manager. Skipping..."
+else
+  rm -rf "$HOME/.tmux/plugins/tpm"
+  git clone "https://github.com/tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm"
+  tmux source "$HOME/.tmux.conf"
+  chmod a+x "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
+  . "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
+fi
+
 # i3wm
 rm -rf "$HOME/.config/i3"
 ln -s "$DOTFILES/i3" "$HOME/.config"

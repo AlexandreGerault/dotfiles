@@ -11,7 +11,28 @@ ln -sf "$DOTFILES/bash/.bashrc" "$HOME/.bashrc"
 ln -sf "$DOTFILES/bash/.bash_aliases" "$HOME/.bash_aliases"
 
 if [ -f "$HOME/.bashrc" ]; then
-    . "$HOME/.bashrc"
+  . "$HOME/.bashrc"
+fi
+
+# Zsh
+rm -rf "$HOME/.zshenv"
+rm -rf "$HOME/.zshrc"
+rm -rf "$HOME/.zsh_aliases"
+ln -sf "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
+ln -sf "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
+ln -sf "$DOTFILES/zsh/.zsh_aliases" "$HOME/.zsh_aliases"
+
+# Neovim
+rm -rf "$HOME/.config/nvim"
+ln -sf "$DOTFILES/nvim" "$HOME/.config/nvim"
+
+# Create necessary directories for Neovim
+mkdir -p "$HOME/.local/share/nvim"
+mkdir -p "$HOME/.local/state/nvim"
+
+# Install Neovim plugins using lazy.nvim
+if command -v nvim &>/dev/null; then
+  nvim --headless -c "Lazy sync" -c q
 fi
 
 # Kitty
@@ -24,8 +45,7 @@ rm -rf "$HOME/.tmux"
 ln -sf "$DOTFILES/tmux/tmux.conf" "$HOME/.tmux.conf"
 ln -sf "$DOTFILES/tmux" "$HOME/.tmux"
 
-if ! command -v git &> /dev/null
-then
+if ! command -v git &>/dev/null; then
   echo >&2 "Git is not installed, cannot install tmux plugin manager. Skipping..."
 else
   rm -rf "$HOME/.tmux/plugins/tpm"

@@ -1,0 +1,68 @@
+#!/usr/bin/env zsh
+
+# Define the dotfiles directory
+DOTFILES="$(cd "$(dirname "${(%):-%N}")" && pwd)"
+
+# Zsh configs
+rm -f "$HOME/.zshrc"
+rm -f "$HOME/.zsh_aliases"
+rm -f "$HOME/.zshenv"
+
+ln -sf "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
+ln -sf "$DOTFILES/zsh/.zsh_aliases" "$HOME/.zsh_aliases"
+ln -sf "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
+
+# Install Oh My Zsh plugins
+if command -v git &>/dev/null; then
+  # Install zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+  # Install zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+else
+  echo >&2 "Git is not installed, skipping Oh My Zsh plugin installation."
+fi
+
+# Source the zsh config
+if [[ -f "$HOME/.zshrc" ]]; then
+  source "$HOME/.zshrc"
+fi
+
+# Neovim
+rm -rf "$HOME/.config/nvim"
+ln -sf "$DOTFILES/nvim" "$HOME/.config/nvim"
+
+# Create necessary directories for Neovim
+mkdir -p "$HOME/.local/share/nvim"
+mkdir -p "$HOME/.local/state/nvim"
+
+# Install Neovim plugins using lazy.nvim
+if command -v nvim &> /dev/null; then
+  nvim --headless -c "Lazy sync" -c q
+fi
+
+# Kitty
+rm -rf "$HOME/.config/kitty"
+ln -s "$DOTFILES/kitty" "$HOME/.config/kitty"
+
+# Tmux
+rm -f "$HOME/.tmux.conf"
+rm -rf "$HOME/.tmux"
+ln -sf "$DOTFILES/tmux/tmux.conf" "$HOME/.tmux.conf"
+ln -sf "$DOTFILES/tmux" "$HOME/.tmux"
+
+# Install tmux plugin manager if Git is available
+if command -v git &>/dev/null; then
+  rm -rf "$HOME/.tmux/plugins/tpm"
+  git clone "https://github.com/tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm"
+  tmux source "$HOME/.tmux.conf"
+  chmod a+x "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
+  "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
+else
+  echo >&2 "Git is not installed, skipping tmux plugin installation."
+fi
+
+# i3wm (note: i3 is not used on macOS by default)
+rm -rf "$HOME/.config/i3"
+ln -s "$DOTFILES/i3" "$HOME/.config"
+

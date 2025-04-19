@@ -1,0 +1,19 @@
+# ls aliases
+alias ls='ls --color=auto'
+alias ll='ls -laF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Editor aliases
+alias v='nvim'
+alias vim='nvim'
+alias vz='nvim ~/.zshrc'
+
+# Directory aliases
+alias cdp='cd ~/projects'
+
+# Search aliases
+alias grep='rg'
+
+# Laravel Sail alias
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'

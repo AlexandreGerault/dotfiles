@@ -116,6 +116,11 @@ fi
 
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
+# Add Cargo bin to PATH if it exists
+if [ -d "$HOME/.cargo/bin" ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 if command -v tmux &>/dev/null && [ -z "$TMUX" ]; then
     tmux attach-session -t default || tmux new-session -s default
 fi

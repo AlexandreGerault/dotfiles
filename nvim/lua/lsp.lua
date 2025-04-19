@@ -2,6 +2,8 @@ vim.lsp.enable("clangd")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("yamlls")
 vim.lsp.enable("biome")
+vim.lsp.enable("rust-analyzet")
+vim.lsp.enable("rust-analyzer")
 
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})

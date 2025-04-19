@@ -23,6 +23,7 @@ return {
           "tailwindcss",
           "clangd",
           "biome",
+          "rust_analyzer",
           "yamlls"
         },
       })

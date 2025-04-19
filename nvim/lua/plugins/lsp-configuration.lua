@@ -23,6 +23,7 @@ return {
           "tailwindcss",
           "clangd",
           "biome",
+          "yamlls"
         },
       })
     end,

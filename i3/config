@@ -218,10 +218,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+b move up
-bindsym $mod+Shift+o move right
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -325,15 +325,15 @@ set $ws10 "10"
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
 # you can get from xrandr command
-workspace $ws1 output DisplayPort-3
-workspace $ws2 output DisplayPort-3
-workspace $ws3 output DisplayPort-3
-workspace $ws4 output DisplayPort-3
-workspace $ws5 output DisplayPort-3
-workspace $ws6 output DisplayPort-2
-workspace $ws7 output DisplayPort-2
-workspace $ws8 output DisplayPort-2
-workspace $ws9 output DisplayPort-2
+workspace $ws1 output DP-2
+workspace $ws2 output DP-2
+workspace $ws3 output DP-2
+workspace $ws4 output DP-2
+workspace $ws5 output DP-2
+workspace $ws6 output DP-0
+workspace $ws7 output DP-0
+workspace $ws8 output DP-0
+workspace $ws9 output DP-0
 
 # bind program to workspace and focus to them on startup:
 assign [class="kitty"] $ws1
@@ -348,9 +348,11 @@ assign [class="discord"] $ws6
 # automatic set focus new window if it opens on another workspace than the current:
 for_window [class=kitty] focus
 for_window [class=(?i)firefox] focus
+for_window [class="Google-chrome"] focus
 for_window [class=Thunar] focus
 for_window [class=Thunderbird] focus
 for_window [class=TelegramDesktop] focus
+for_window [class="Wine"] floating enable
 
 ##############
 # compositor #
@@ -608,3 +610,5 @@ bindsym $mod+t exec --no-startup-id rofi -show window \
 #exec --no-startup-id greenclip daemon>/dev/null
 #bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
 #		-config ~/.config/rofi/rofidmenu.rasi
+
+for_window [class="HogwartsLegacy"] floating enable

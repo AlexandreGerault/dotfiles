@@ -11,8 +11,9 @@ fi
 
 PS1='[\u@\h \W]\$ '
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
+export GPG_TTY=$(tty)
+
+if command -v kitty >/dev/null 2>&1; then
+    export TERM="xterm-kitty"
 fi
 
-export GPG_TTY=$(tty)

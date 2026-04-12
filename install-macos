@@ -62,7 +62,14 @@ else
   echo >&2 "Git is not installed, skipping tmux plugin installation."
 fi
 
+# Add a global ignore config file if Git is available
+if command -v git &>/dev/null; then
+  ln -sf "$DOTFILES/git/ignore" "~/.gitignore"
+  git config --global core.excludesfile "$HOME/.gitignore"
+else
+  echo >&2 "Git is not installed, skipping global .gitignore."
+fi
+
 # i3wm (note: i3 is not used on macOS by default)
 rm -rf "$HOME/.config/i3"
-ln -s "$DOTFILES/i3" "$HOME/.config"
 

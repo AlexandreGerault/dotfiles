@@ -22,6 +22,7 @@ return {
           "eslint",
           "gopls",
           "lua_ls",
+          "pylsp",
           "rust_analyzer",
           "tailwindcss",
           "ts_ls",

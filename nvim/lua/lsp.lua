@@ -6,7 +6,7 @@ vim.lsp.enable("php-language-server")
 vim.lsp.enable("rust-analyzer")
 vim.lsp.enable("yamlls")
 vim.lsp.enable("ts_ls")
--- vim.lsp.enable("sqls")
+vim.lsp.enable("pylsp")
 
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})

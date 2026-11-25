@@ -1,8 +1,5 @@
 return {
-	{
-		"numToStr/Comment.nvim",
-		opts = {},
-	},
+	-- Commenting uses Neovim's built-in `gc` / `gcc` + ts-comments.nvim (see web-editing.lua)
 	{
 		"danymat/neogen",
 		dependencies = "nvim-treesitter/nvim-treesitter",

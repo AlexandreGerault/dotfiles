@@ -8,7 +8,7 @@ return {
 			-- Packages not mapped by mason-lspconfig
 			local registry = require("mason-registry")
 			registry.refresh(function()
-				for _, name in ipairs({ "jls" }) do
+				for _, name in ipairs({ "jls", "prettierd" }) do
 					local ok, pkg = pcall(registry.get_package, name)
 					if ok and not pkg:is_installed() then
 						pkg:install()
@@ -24,19 +24,24 @@ return {
 		dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
 		config = function()
 			require("mason-lspconfig").setup({
-				automatic_enable = true,
+				-- ts_ls is replaced by vtsls; excluded in case it is still installed
+				automatic_enable = { exclude = { "ts_ls" } },
 				ensure_installed = {
 					"biome",
 					"clangd",
+					"cssls",
 					"docker_compose_language_service",
 					"dockerls",
+					"emmet_language_server",
 					"eslint",
 					"gopls",
+					"html",
+					"jsonls",
 					"lua_ls",
 					"pylsp",
 					"rust_analyzer",
 					"tailwindcss",
-					"ts_ls",
+					"vtsls",
 					"yamlls",
 				},
 			})

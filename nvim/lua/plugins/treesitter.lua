@@ -4,7 +4,11 @@ return {
   branch = "main",
   build = ":TSUpdate",
   init = function()
-    local ensureInstalled = { "lua", "javascript", "c", "cpp", "php", "rust", "go", "sql" }
+    local ensureInstalled = {
+      "lua", "c", "cpp", "php", "rust", "go", "sql", "python",
+      -- web
+      "javascript", "typescript", "tsx", "jsdoc", "json", "html", "css", "scss",
+    }
     local parsersToInstall = vim
         .iter(ensureInstalled)
         :totable()

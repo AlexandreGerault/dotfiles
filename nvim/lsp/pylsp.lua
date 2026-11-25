@@ -38,4 +38,24 @@ return {
     'Pipfile',
     '.git',
   },
+  -- pylsp runs from Mason's own venv: point jedi at the project's venv so
+  -- completion / goto-definition resolve the project's installed packages.
+  on_init = function(client)
+    local venv = vim.env.VIRTUAL_ENV
+    if not venv and client.root_dir then
+      for _, name in ipairs({ '.venv', 'venv' }) do
+        local candidate = vim.fs.joinpath(client.root_dir, name)
+        if vim.uv.fs_stat(vim.fs.joinpath(candidate, 'bin', 'python')) then
+          venv = candidate
+          break
+        end
+      end
+    end
+    if venv then
+      client.settings = vim.tbl_deep_extend('force', client.settings or {}, {
+        pylsp = { plugins = { jedi = { environment = venv } } },
+      })
+      client:notify('workspace/didChangeConfiguration', { settings = client.settings })
+    end
+  end,
 }
